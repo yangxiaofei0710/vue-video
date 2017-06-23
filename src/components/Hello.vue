@@ -2,16 +2,30 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>欢迎来到王者荣耀</h2>
+    {{totalPrice}}
+    <apple></apple>
+    <banana></banana>
   </div>
 </template>
 
 <script>
+	import Apple from './apple'
+	import Banana from './banana'
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components: {
+  	Apple,
+  	Banana
+  },
+  computed:{
+  	totalPrice () {
+  		return this.$store.getters.getTotal
+  	}
   }
 }
 </script>
