@@ -3,6 +3,32 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+let store = new Vuex.Store({
+	state:{
+		totalPrice:0
+	},
+	getters: {
+		getTotal (state) {
+			return state.totalPrice
+		}
+	},
+	mutations:{
+		increment (state,price) {
+			state.totalPrice += price
+		},
+		decrement (state,price) {
+			state.totalPrice -= price
+		}
+	},
+	actions: {
+		increase ({commit},price) {
+			commit("increment" , price)
+		}
+	}
+})
 
 Vue.config.productionTip = false
 
@@ -10,6 +36,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
